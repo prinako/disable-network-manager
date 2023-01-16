@@ -1,19 +1,22 @@
 #! /bin/sh
 # Alteração da porta do SSH e Habilitação de senha de acesso ao SSH
 
+# Verificando se o SSH já está instalado
 if  ! command -v ssh & > /dev/null then
 
     echo "SSH não está instalado na máquina.."
     echo "Voce quer instalar o SSH? (S/n)..."
     read instalSsh
+    
     echo "Seu sistema se baseia em que?"
     echo "1 Arch Base"
     echo "2 Debian base (Ubuntu, linux Mint)"
+
     read qualsistema
+
     if [$instalSsh == "S"]; then 
         echo "Instalando SSh ...."
         if [$qualsistema == 1]; then
-
             pacman -S openssh -y
         else if [$qualsistema == 2];then
             apt-get update && apt-get install openssh-server
