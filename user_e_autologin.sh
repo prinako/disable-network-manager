@@ -13,7 +13,7 @@ echo "$nome: $senha" | chpasswd
 echo "Esse Usuário precisa de Autologin? (S/n).."
 read autoLogin
 
-if[$autoLogin == "S"];then
+if [$autoLogin == "S"]; then
     echo "Criando grupo de autologin"
     cp /etc/lightdm/lightdm.conf >> /etc/lightdm/lightdm.conf.bk
     chmod 777 /etc/lightdm/lightdm.conf
