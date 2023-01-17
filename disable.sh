@@ -45,11 +45,15 @@ echo "2 Debian base (Ubuntu, linux Mint)"
 read qualsistema
 
 if [ $qualsistema == 1  ]; then
-# sistemas operacionais baseados no Arch Linux
-     pacman -Rc network-manager-applet
+     if command -v ssh & > /dev/null then
+          # sistemas operacionais baseados no Arch Linux
+          pacman -Rc network-manager-applet
+     fi
 else if [  $qualsistema == 2 ]
- #  sistemas operacionais baseados no Debian (Ubuntu, Mint)
-     apt-get remove network-manager
+     if command -v ssh & > /dev/null then
+           #  sistemas operacionais baseados no Debian (Ubuntu, Mint)
+          apt-get remove network-manager
+     fi
 fi
 
 # Configurando proxy para maquinas consulta integrada.

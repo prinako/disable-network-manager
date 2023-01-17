@@ -3,19 +3,19 @@
 echo "Nome do Usuário?"
 read nome
 
-echo "Defina a senha:"
-read senha
+#echo "Defina a senha:"
+#read senha
 
 echo "Criando usuário com senha..."
 useradd -m $nome 
-echo "$nome: $senha" | chpasswd
+passwd
 
 echo "Esse Usuário precisa de Autologin? (S/n).."
 read autoLogin
 
-if [$autoLogin == "S"]; then
+if [ $autoLogin == "S" ]; then
     echo "Criando grupo de autologin"
-    cp /etc/lightdm/lightdm.conf >> /etc/lightdm/lightdm.conf.bk
+    cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bk
     chmod 777 /etc/lightdm/lightdm.conf
     echo "allow-user-switching=true" >> /etc/lightdm/lightdm.conf
     echo "autologin-user=$nome" >> /etc/lightdm/lightdm.conf
