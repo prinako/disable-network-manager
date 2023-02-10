@@ -1,7 +1,7 @@
 #! /bin/sh
 
-iptables -A INPUT -p tcp --dport 80 -s 10.7.5.0/27 -j ACCEPT
-iptables -A INPUT -p tcp --dport 7283 -s 10.7.5.0/27 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -s 10.7.5.0/20 -j ACCEPT
+iptables -A INPUT -p tcp --dport 7283 -s 10.7.5.0/20 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport 80 -j DROP
 iptables -A INPUT -p tcp --dport 7283 -j DROP
