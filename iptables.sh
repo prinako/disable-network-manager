@@ -1,7 +1,7 @@
 #! /bin/sh
 
-iptables -A INPUT -p tcp --dport 80 -s 10.7.5.0/26 -j ACCEPT
-iptables -A INPUT -p tcp --dport 7283 -s 10.7.5.0/26 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -s 10.7.5.0/27 -j ACCEPT
+iptables -A INPUT -p tcp --dport 7283 -s 10.7.5.0/27 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport 80 -j DROP
 iptables -A INPUT -p tcp --dport 7283 -j DROP
@@ -31,10 +31,10 @@ iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -i -j SCANNER
 
 
 iptables-save >> rules.v4
-iptables-save >> rules.v6
+#iptables-save >> rules.v6
 
 mv rules.v4 /etc/iptables/
-mv rules.v6 /etc/iptables/
+#mv rules.v6 /etc/iptables/
 
 systemctl start iptables
 systemctl enable iptables
