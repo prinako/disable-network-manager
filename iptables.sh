@@ -29,6 +29,7 @@ iptables -A INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -i -j SCANNER
 iptables -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -i -j SCANNER
 iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -i -j SCANNER
 
+
 iptables-save >> rules.v4
 iptables-save >> rules.v6
 
