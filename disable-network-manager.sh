@@ -45,11 +45,32 @@ echo "2 Debian base (Ubuntu, linux Mint)"
 read qualsistema
 
 if [ $qualsistema == 1  ]; then
-# sistemas operacionais baseados no Arch Linux
-     pacman -Rc network-manager-applet
+     if command -v ssh & > /dev/null then
+          # sistemas operacionais baseados no Arch Linux
+          pacman -Rc network-manager-applet
+     fi
 else if [  $qualsistema == 2 ]
- #  sistemas operacionais baseados no Debian (Ubuntu, Mint)
-     apt-get remove network-manager
+     if command -v ssh & > /dev/null then
+           #  sistemas operacionais baseados no Debian (Ubuntu, Mint)
+          apt-get remove network-manager
+     fi
 fi
 
-echo "Reinicie a máqina"
+# Configurando proxy para maquinas consulta integrada.
+echo "A maquina é consulta integrada? (S/n);"
+read maquina
+
+if [ $maquina == "S" ]; then
+
+     echo "Qual o IP do proxy?"
+     read proxyIP
+     echo "Qual a porta do proxy?"
+     read proxyPort
+     touch /etc/profile.d/proxy.sh
+     echo "export http_proxy=http://$proxyIP:$proxyPort/" >> /etc/profile.d/proxy.sh
+     echo "export https_proxy=$http_proxy" >> /etc/profile.d/proxy.sh
+     echo "export ftp_proxy=$http_proxy" >> /etc/profile.d/proxy.sh
+     echo 'export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/profile.d/proxy.sh
+fi
+
+echo "Reinicie a máquina"
